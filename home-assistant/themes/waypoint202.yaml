@@ -1,0 +1,14 @@
+# Starter theme for Captain Waypoint Command Center.
+# Depending on your Home Assistant setup, themes must be enabled and loaded
+# from the configured themes directory before this can be selected.
+
+waypoint202:
+  primary-color: "#00D4FF"
+  accent-color: "#D6A84F"
+  primary-background-color: "#050A10"
+  secondary-background-color: "#0B1118"
+  card-background-color: "#101820"
+  primary-text-color: "#F4F7FA"
+  secondary-text-color: "#9AA9B8"
+  divider-color: "#263442"
+  state-icon-active-color: "#39E75F"
