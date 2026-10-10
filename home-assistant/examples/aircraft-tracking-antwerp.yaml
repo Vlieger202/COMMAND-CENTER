@@ -1,0 +1,21 @@
+# Captain Waypoint — aircraft tracking card
+# Requires the community Flightradar24 integration to be installed and configured.
+# Confirm the actual sensor entity ID in Developer Tools > States first.
+# This card's integration may use a custom frontend card; follow the integration's own README.
+#
+# Example for the custom card bundled with AlexandrErohin/home-assistant-flightradar24:
+type: custom:flightradar24-card
+entity: sensor.flightradar24_current_in_area
+title: AIRCRAFT IN AREA
+show_flights: true
+show_tracks: true
+
+# Set the integration's monitoring coordinates/radius in its configuration.
+# Suggested approach: configure one monitor centered between the desired coverage areas,
+# or add separate integration instances if supported and practical:
+# - Antwerp International Airport (EBAW)
+# - Brussels Airport (EBBR)
+#
+# A single radius must be chosen carefully: increasing it covers more airspace but may
+# increase data requests and loading time. Check the integration's documentation and
+# the data provider's terms before configuring a broad area.
