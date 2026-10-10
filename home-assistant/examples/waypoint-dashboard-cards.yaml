@@ -1,0 +1,96 @@
+# Captain Waypoint Command Center — Lovelace card examples
+#
+# IMPORTANT:
+# These are example cards, not a complete standalone dashboard.
+# Replace placeholder entity IDs with entities that actually exist in your Home Assistant.
+# Custom cards require installation through HACS and frontend resource setup.
+#
+# Suggested custom cards:
+# - custom:button-card
+# - Mushroom cards (optional)
+#
+# Add individual cards to a dashboard using the UI's "Manual" card editor,
+# or adapt them into your dashboard YAML.
+
+# STARTUP PC
+type: custom:button-card
+entity: binary_sensor.pc_waypoint
+name: STARTUP PC
+icon: mdi:desktop-tower
+show_state: true
+state:
+  - value: "on"
+    name: SYSTEMS ONLINE
+    color: "#39e75f"
+  - value: "off"
+    name: SYSTEMS OFFLINE
+    color: "#ff5252"
+
+---
+# STARTUP PLAYSTATION
+type: custom:button-card
+entity: media_player.playstation_5
+name: STARTUP PLAYSTATION
+icon: mdi:sony-playstation
+show_state: true
+
+---
+# DING DONG COFFEE
+# Create a Home Assistant script called script.waypoint_ding_dong_coffee first.
+type: custom:button-card
+name: DING DONG COFFEE
+icon: mdi:coffee
+show_state: false
+tap_action:
+  action: perform-action
+  perform_action: script.waypoint_ding_dong_coffee
+  confirmation:
+    text: Start the coffee automation?
+
+---
+# WEATHER
+# Replace weather.home with your actual weather entity.
+type: weather-forecast
+entity: weather.home
+show_current: true
+show_forecast: true
+
+---
+# RADAR
+# External iframe availability depends on the site's embedding policy.
+type: iframe
+url: https://www.buienradar.be/
+aspect_ratio: 100%
+
+---
+# AIRCRAFT STATUS — PLACEHOLDER
+# This is deliberately not wired to a made-up FlightRadar entity.
+# First identify a supported integration/data source and the entities it exposes.
+type: markdown
+title: AIRCRAFT STATUS
+content: |
+  **FlightRadar selection**
+  
+  Configure this panel after confirming the chosen FlightRadar integration
+  and its supported entities. Do not treat example aircraft as live data.
+
+---
+# CURRENT MISSION
+# Create input_text.current_mission using Helpers or the helper example file.
+type: markdown
+title: CURRENT MISSION
+content: |
+  ## {{ states('input_text.current_mission') }}
+
+---
+# SYSTEM MONITOR
+# Replace these entity IDs with sensors available in your installation.
+type: entities
+title: SYSTEM MONITOR
+entities:
+  - entity: sensor.processor_use
+    name: CPU
+  - entity: sensor.memory_use_percent
+    name: Memory
+  - entity: sensor.disk_use_percent
+    name: Disk
