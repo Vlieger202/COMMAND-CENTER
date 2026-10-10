@@ -1,0 +1,9 @@
+# Captain Waypoint — weather above Antwerp
+# First add/configure a weather integration in Home Assistant for Antwerp, Belgium.
+# Then replace weather.home below with the actual entity ID shown in Developer Tools > States.
+type: weather-forecast
+entity: weather.home
+name: Antwerp Weather
+forecast_type: hourly
+show_current: true
+show_forecast: true
