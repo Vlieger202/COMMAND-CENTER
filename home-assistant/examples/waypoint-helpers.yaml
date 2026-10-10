@@ -1,0 +1,23 @@
+# Example Home Assistant helpers for Captain Waypoint Command Center.
+# Merge these entries into configuration.yaml or an appropriate package.
+# Do not replace your existing configuration.yaml with this snippet.
+#
+# After editing YAML configuration, validate the configuration and restart
+# Home Assistant if required by the integration/helper type.
+
+input_text:
+  current_mission:
+    name: Current Mission
+    icon: mdi:target
+    max: 120
+
+script:
+  waypoint_ding_dong_coffee:
+    alias: Waypoint - Ding Dong Coffee
+    description: Example placeholder script for a future coffee notification or automation.
+    icon: mdi:coffee
+    sequence:
+      - action: persistent_notification.create
+        data:
+          title: "WAYPOINT 202"
+          message: "Ding dong! Coffee time."
