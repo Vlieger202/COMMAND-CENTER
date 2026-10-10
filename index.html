@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071019">
+<title>Captain Waypoint Command Center</title>
+<style>
+:root{color-scheme:dark;--bg:#060b11;--panel:#0c151f;--panel2:#101d29;--line:#203243;--text:#edf4fa;--muted:#91a4b6;--cyan:#44d7ef;--gold:#d9ad5c;--green:#65e69a;--red:#ff7373}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -10%,#143047 0,transparent 42%),var(--bg);color:var(--text);font:14px/1.45 Inter,Segoe UI,Arial,sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100vh}.sidebar{padding:26px 16px;border-right:1px solid var(--line);background:#071019d9;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:11px;padding:0 7px}.brand-mark{width:42px;height:42px;border:1px solid #35657c;border-radius:12px;display:grid;place-items:center;color:var(--cyan);font-size:23px;background:#102433}.brand strong{display:block;letter-spacing:.11em;font-size:12px}.brand span{display:block;color:var(--muted);font-size:10px;letter-spacing:.16em;margin-top:4px}.nav-label{font-size:10px;letter-spacing:.2em;color:#62798c;padding:0 10px;margin-bottom:7px}.nav{display:grid;gap:5px}.nav a{color:#9db0c0;text-decoration:none;padding:11px 12px;border-radius:9px;display:flex;gap:12px;align-items:center}.nav a:hover,.nav a.active{background:#132636;color:var(--text)}.nav a.active{box-shadow:inset 2px 0 var(--cyan)}.nav-icon{width:18px;text-align:center;color:var(--cyan);font-size:16px}.side-bottom{margin-top:auto;border:1px solid var(--line);background:#0c1721;border-radius:12px;padding:14px}.side-bottom small{color:var(--muted);display:block}.side-bottom strong{display:block;font-size:12px;margin:6px 0}.status-dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:6px;box-shadow:0 0 9px #65e69a66}
+main{padding:28px clamp(18px,3vw,42px) 40px;max-width:1600px;width:100%;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:.22em;font-weight:700}.topbar h1{font-size:clamp(24px,3vw,36px);letter-spacing:-.035em;margin:6px 0 4px}.subtitle{color:var(--muted);font-size:13px}.top-actions{display:flex;gap:10px;align-items:center}.clock{text-align:right;border-right:1px solid var(--line);padding-right:16px}.clock strong{font-size:21px;letter-spacing:.05em;display:block}.clock small{color:var(--muted)}.pill{border:1px solid var(--line);background:#0d1a25;padding:9px 12px;border-radius:999px;color:#c8d7e2;font-size:11px}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px}.card{background:linear-gradient(145deg,#101c27,#0a121a);border:1px solid var(--line);border-radius:15px;padding:18px;min-width:0;box-shadow:0 8px 30px #00000015}.span-12{grid-column:span 12}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.card-title{font-size:11px;letter-spacing:.14em;font-weight:800}.card-kicker{font-size:10px;color:var(--muted)}.tag{font-size:9px;letter-spacing:.1em;border:1px solid #28523d;color:var(--green);padding:5px 7px;border-radius:5px}.tag.demo{border-color:#65502e;color:var(--gold)}.systems{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.system{border:1px solid #203342;border-radius:11px;padding:14px;background:#0a141d;display:flex;align-items:center;gap:12px}.system-icon{width:39px;height:39px;border-radius:10px;display:grid;place-items:center;background:#132a38;color:var(--cyan);font-size:20px;flex-shrink:0}.system strong{display:block;font-size:12px}.system small{color:var(--muted);font-size:10px}.system .state{margin-left:auto;color:var(--green);font-size:10px;white-space:nowrap}.system .state.off{color:var(--muted)}.coffee{display:flex;align-items:center;gap:17px}.coffee-art{width:70px;height:70px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#49371e,#171c21);font-size:31px;border:1px solid #66502d;flex-shrink:0}.coffee p{color:var(--muted);font-size:12px;margin:5px 0 12px}.btn{border:1px solid #27637a;color:#c5f6ff;background:#0b2a38;border-radius:8px;padding:9px 12px;font-size:11px}.btn:hover{filter:brightness(1.2)}.btn.gold{border-color:#6e572e;background:#2a2114;color:#f2d8a0}.btn.ghost{background:#111d27;border-color:var(--line);color:#b6c7d5}.weather-now{display:flex;align-items:center;gap:14px}.weather-symbol{font-size:43px}.temperature{font-size:34px;font-weight:700;letter-spacing:-.05em}.weather-meta{color:var(--muted);font-size:11px}.forecast{display:flex;justify-content:space-between;margin-top:19px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:10px}.forecast b{display:block;color:var(--text);margin-top:6px;font-size:12px}.radar{height:160px;border-radius:10px;border:1px solid #203444;overflow:hidden;position:relative;background:linear-gradient(135deg,#0d2630,#12202c 48%,#0b1721)}.radar:before,.radar:after{content:"";position:absolute;border:1px solid #2e6070;border-radius:50%;width:230px;height:230px;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 35px #102a3544,0 0 0 70px #102a3522}.radar:after{width:150px;height:150px;border-color:#31614c;box-shadow:0 0 18px #2a7d5666}.radar-grid{position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.7%,#31506455 50%,transparent 50.3%),linear-gradient(transparent 49.7%,#31506455 50%,transparent 50.3%)}.radar-label{position:absolute;left:12px;top:10px;font-size:9px;letter-spacing:.12em;color:#9cc2ce}.radar-note{position:absolute;bottom:10px;left:12px;color:#a8bbc9;font-size:10px}.radar-blip{position:absolute;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 12px var(--green);left:61%;top:42%}.flight-empty{border:1px dashed #34495a;border-radius:10px;padding:18px;display:flex;align-items:center;gap:14px}.flight-empty .plane{font-size:28px;color:var(--cyan)}.flight-empty strong{display:block;font-size:12px}.flight-empty p{margin:4px 0 0;color:var(--muted);font-size:11px}.list{display:grid;gap:10px}.event{display:grid;grid-template-columns:55px 1fr;gap:12px;align-items:center;padding:11px;border-radius:9px;background:#0b151e;border:1px solid #192b39}.event-time{color:var(--cyan);font-weight:700;font-size:12px}.event strong{display:block;font-size:11px}.event small{color:var(--muted);font-size:10px}.empty-note{font-size:11px;color:var(--muted);padding:10px 0}.device-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #1c2c39}.device-row:last-child{border-bottom:0}.device-ico{width:34px;height:34px;display:grid;place-items:center;background:#132432;border-radius:9px;color:var(--gold);font-size:17px}.device-info{flex:1;min-width:0}.device-info strong{font-size:11px;display:block}.device-info small{font-size:10px;color:var(--muted)}.toggle{width:40px;height:23px;border:1px solid #304452;background:#1a2934;border-radius:99px;position:relative;flex-shrink:0}.toggle:after{content:"";width:15px;height:15px;position:absolute;left:3px;top:3px;border-radius:50%;background:#8ca0ae;transition:.2s}.toggle.on{background:#174b3a;border-color:#287d5b}.toggle.on:after{left:20px;background:var(--green)}.blind-control{display:flex;align-items:center;gap:10px;padding:12px 0}.blind-control label{font-size:11px;flex:1}.blind-control output{color:var(--cyan);font-size:11px;width:35px;text-align:right}.blind-control input{width:100px;accent-color:var(--cyan)}.mission{display:flex;align-items:center;gap:12px}.mission-mark{font-size:24px;color:var(--gold)}.mission strong{font-size:12px;display:block}.mission p{font-size:10px;color:var(--muted);margin:4px 0 0}.mission-edit{display:flex;gap:8px;margin-top:14px}.mission-edit input{min-width:0;flex:1;background:#071019;border:1px solid var(--line);color:var(--text);padding:9px;border-radius:8px}.meters{display:grid;gap:14px}.meter-label{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-bottom:6px}.meter-label b{color:var(--text)}.track{height:6px;background:#1b2b37;border-radius:99px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#2586a6,var(--cyan));border-radius:99px;width:var(--w)}.foot{display:flex;justify-content:space-between;gap:10px;color:#607587;font-size:10px;margin-top:20px;padding:0 3px}.toast{position:fixed;right:20px;bottom:20px;background:#142635;border:1px solid #376175;border-radius:10px;padding:12px 16px;box-shadow:0 8px 35px #0008;max-width:320px;display:none;z-index:5}.toast.show{display:block;animation:fade 3s forwards}@keyframes fade{0%,75%{opacity:1}100%{opacity:0}}
+@media(max-width:1050px){.app{grid-template-columns:72px minmax(0,1fr)}.sidebar{padding:22px 10px}.brand{justify-content:center;padding:0}.brand-copy,.nav-label,.nav-text,.side-bottom{display:none}.nav a{justify-content:center;padding:12px 5px}.span-8,.span-7,.span-5{grid-column:span 6}.span-4{grid-column:span 6}}
+@media(max-width:680px){.app{display:block}.sidebar{display:none}main{padding:20px 14px}.topbar{align-items:flex-start}.top-actions{display:none}.grid{gap:11px}.span-12,.span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}.systems{grid-template-columns:1fr}.system{padding:11px}.card{padding:15px}.foot{flex-direction:column}.clock{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">✈</div><div class="brand-copy"><strong>WAYPOINT 202</strong><span>COMMAND CENTER</span></div></div>
+  <div><div class="nav-label">FLIGHT DECK</div><nav class="nav">
+    <a class="active" href="#status"><span class="nav-icon">⌂</span><span class="nav-text">Captain Status</span></a>
+    <a href="#systems"><span class="nav-icon">▣</span><span class="nav-text">Systems</span></a>
+    <a href="#flight"><span class="nav-icon">✈</span><span class="nav-text">Aircraft Status</span></a>
+    <a href="#ops"><span class="nav-icon">▦</span><span class="nav-text">Flight Ops</span></a>
+    <a href="#home"><span class="nav-icon">⌂</span><span class="nav-text">Home Controls</span></a>
+    <a href="#mission"><span class="nav-icon">◎</span><span class="nav-text">Current Mission</span></a>
+  </nav></div>
+  <div class="side-bottom"><small>COMMAND LINK</small><strong><i class="status-dot"></i>LOCAL PROTOTYPE</strong><small>Live integrations not connected</small></div>
+</aside>
+<main>
+  <header class="topbar" id="status">
+    <div><div class="eyebrow">WAYPOINT 202 / PERSONAL OPERATIONS</div><h1>Captain Waypoint Status</h1><div class="subtitle">All systems in one place. Your command center, your rules.</div></div>
+    <div class="top-actions"><div class="clock"><strong id="clock">--:--:--</strong><small id="date">LOADING LOCAL TIME</small></div><span class="pill">● DEMO MODE</span></div>
+  </header>
+  <div class="grid">
+    <section class="card span-12" id="systems">
+      <div class="card-head"><div class="card-title">SYSTEMS OVERVIEW</div><span class="tag demo">SIMULATED STATUS</span></div>
+      <div class="systems">
+        <div class="system"><div class="system-icon">▣</div><div><strong>PC STATUS</strong><small id="pc-label">Demo system state</small></div><span class="state" id="pc-state">ONLINE</span><button class="btn ghost" data-toggle="pc" aria-label="Toggle PC demo state">↻</button></div>
+        <div class="system"><div class="system-icon">◉</div><div><strong>PLAYSTATION</strong><small>Console connection</small></div><span class="state off" id="ps-state">STANDBY</span><button class="btn ghost" data-toggle="ps" aria-label="Toggle PlayStation demo state">↻</button></div>
+        <div class="system"><div class="system-icon">☕</div><div><strong>DING DONG COFFEE</strong><small>Morning routine</small></div><span class="state off" id="coffee-state">READY</span><button class="btn ghost" id="coffee-btn" aria-label="Run coffee demo">↗</button></div>
+      </div>
+    </section>
+    <section class="card span-4">
+      <div class="card-head"><div class="card-title">WEATHER BRIEFING</div><span class="tag demo">SAMPLE</span></div>
+      <div class="weather-now"><div class="weather-symbol">☁</div><div><div class="temperature">--°</div><div class="weather-meta">Live weather not connected</div><div class="weather-meta">Configure your weather integration</div></div></div>
+      <div class="forecast"><div>CONDITION<b>Unavailable</b></div><div>WIND<b>-- km/h</b></div><div>HUMIDITY<b>--%</b></div></div>
+    </section>
+    <section class="card span-4">
+      <div class="card-head"><div class="card-title">WEATHER RADAR</div><span class="tag demo">PREVIEW</span></div>
+      <div class="radar"><div class="radar-grid"></div><div class="radar-label">RADAR DISPLAY / NOT LIVE</div><div class="radar-blip"></div><div class="radar-note">Radar visual placeholder</div></div>
+      <div class="card-kicker" style="margin-top:10px">Connect a supported radar source for live data.</div>
+    </section>
+    <section class="card span-4" id="flight">
+      <div class="card-head"><div class="card-title">AIRCRAFT STATUS</div><span class="tag demo">NOT CONNECTED</span></div>
+      <div class="flight-empty"><div class="plane">✈</div><div><strong>FlightRadar selection</strong><p>Your selected aircraft will appear here after we connect a supported data source.</p></div></div>
+      <div class="card-kicker" style="margin-top:12px">No aircraft is being tracked in this prototype.</div>
+    </section>
+    <section class="card span-7" id="ops">
+      <div class="card-head"><div class="card-title">FLIGHT OPS / AGENDA</div><span class="tag demo">DEMO</span></div>
+      <div class="list">
+        <div class="event"><div class="event-time">--:--</div><div><strong>Calendar not connected</strong><small>Connect your calendar integration to show your appointments here.</small></div></div>
+        <div class="event"><div class="event-time">PLAN</div><div><strong>Mission planning</strong><small>Your upcoming events will be shown in this panel.</small></div></div>
+      </div>
+    </section>
+    <section class="card span-5">
+      <div class="card-head"><div class="card-title">SYSTEM MONITOR</div><span class="tag demo">PLACEHOLDER</span></div>
+      <div class="meters">
+        <div><div class="meter-label"><span>CPU LOAD</span><b>--</b></div><div class="track"><div class="fill" style="--w:34%"></div></div></div>
+        <div><div class="meter-label"><span>MEMORY</span><b>--</b></div><div class="track"><div class="fill" style="--w:58%"></div></div></div>
+        <div><div class="meter-label"><span>STORAGE</span><b>--</b></div><div class="track"><div class="fill" style="--w:42%"></div></div></div>
+      </div>
+      <p class="card-kicker" style="margin:14px 0 0">Real readings require compatible sensors or an integration.</p>
+    </section>
+    <section class="card span-6" id="home">
+      <div class="card-head"><div class="card-title">HOME CONTROLS / LIGHTING</div><span class="tag demo">DEMO SWITCHES</span></div>
+      <div class="device-row"><div class="device-ico">☼</div><div class="device-info"><strong>Living room lights</strong><small id="light-state">Currently simulated: off</small></div><button class="toggle" role="switch" aria-checked="false" aria-label="Living room lights demo" data-device="light"></button></div>
+      <div class="device-row"><div class="device-ico">◌</div><div class="device-info"><strong>Ambient lighting</strong><small id="ambient-state">Currently simulated: off</small></div><button class="toggle" role="switch" aria-checked="false" aria-label="Ambient lighting demo" data-device="ambient"></button></div>
+      <p class="card-kicker" style="margin:12px 0 0">These switches do not control real devices yet.</p>
+    </section>
+    <section class="card span-6">
+      <div class="card-head"><div class="card-title">ROLLER BLINDS</div><span class="tag demo">DEMO POSITION</span></div>
+      <div class="blind-control"><label for="blind">Living room blinds</label><input id="blind" type="range" min="0" max="100" value="65"><output id="blind-value">65%</output></div>
+      <div class="card-kicker">0% = closed · 100% = fully open</div>
+      <div style="display:flex;gap:8px;margin-top:12px"><button class="btn ghost" id="blind-close">Close</button><button class="btn ghost" id="blind-open">Open</button></div>
+    </section>
+    <section class="card span-12" id="mission">
+      <div class="card-head"><div class="card-title">CURRENT MISSION</div><span class="tag">PERSONAL COMMAND</span></div>
+      <div class="mission"><div class="mission-mark">◎</div><div><strong id="mission-title">Build the Waypoint Command Center</strong><p>Set a focus for the current project. This prototype stores your edit only in the current page session.</p></div></div>
+      <form class="mission-edit" id="mission-form"><input id="mission-input" maxlength="120" placeholder="Enter your current mission..." aria-label="Current mission"><button class="btn gold" type="submit">Update mission</button></form>
+    </section>
+  </div>
+  <div class="foot"><span>WAYPOINT 202 · CAPTAIN'S PERSONAL DASHBOARD</span><span>PROTOTYPE BUILD 0.1 · NO LIVE DEVICE CONNECTIONS</span></div>
+</main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const $=s=>document.querySelector(s);
+function tick(){const d=new Date();$('#clock').textContent=d.toLocaleTimeString('nl-BE',{hour12:false});$('#date').textContent=d.toLocaleDateString('nl-BE',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).toUpperCase()}
+tick();setInterval(tick,1000);
+let toastTimer;
+function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3000)}
+document.querySelectorAll('[data-toggle]').forEach(btn=>btn.addEventListener('click',()=>{const id=btn.dataset.toggle;const el=$('#'+id+'-state');const isOn=el.dataset.on!=='true';el.dataset.on=String(isOn);el.textContent=isOn?'ONLINE':'STANDBY';el.classList.toggle('off',!isOn);if(id==='pc')$('#pc-label').textContent=isOn?'Demo system state: active':'Demo system state: standby';toast((id==='pc'?'PC':'PlayStation')+' demo status: '+(isOn?'online':'standby')+'. Geen echt apparaat aangestuurd.')}));
+$('#coffee-btn').addEventListener('click',()=>{const s=$('#coffee-state');s.textContent='STARTED';s.classList.remove('off');toast('Ding Dong Coffee demo gestart. Er is geen echte automatisering uitgevoerd.');setTimeout(()=>{s.textContent='READY';s.classList.add('off')},2500)});
+document.querySelectorAll('[data-device]').forEach(btn=>btn.addEventListener('click',()=>{const on=btn.getAttribute('aria-checked')!=='true';btn.setAttribute('aria-checked',String(on));btn.classList.toggle('on',on);const label=btn.dataset.device==='light'?'light-state':'ambient-state';$('#'+label).textContent='Currently simulated: '+(on?'on':'off');toast('Demo-schakelaar '+(on?'aan':'uit')+'. Nog niet gekoppeld aan Home Assistant.')}))
+const blind=$('#blind');function updateBlind(){ $('#blind-value').textContent=blind.value+'%';toast('Demo rolluikpositie ingesteld op '+blind.value+'%. Geen echt rolluik aangestuurd.') }blind.addEventListener('change',updateBlind);$('#blind-close').addEventListener('click',()=>{blind.value=0;$('#blind-value').textContent='0%';toast('Demo: rolluik gesloten (alleen visueel).')});$('#blind-open').addEventListener('click',()=>{blind.value=100;$('#blind-value').textContent='100%';toast('Demo: rolluik geopend (alleen visueel).')});
+$('#mission-form').addEventListener('submit',e=>{e.preventDefault();const val=$('#mission-input').value.trim();if(!val){toast('Vul eerst een missie in.');return}$('#mission-title').textContent=val;toast('Current Mission bijgewerkt voor deze sessie.');$('#mission-input').value=''});
+</script>
+</body>
+</html>
